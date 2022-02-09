@@ -1,0 +1,54 @@
+@import '../../styles/variables.scss';
+
+.popup{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__content{
+        padding: 40px;
+        background-color: $light-background;
+        position: relative;
+        border-radius: $border-radius;
+        box-shadow: $box-shadow;
+    }
+    &__temp{
+        font-weight: 500;
+        font-size: 60px;
+        color: $primary-color;
+        margin-bottom: 12px;
+    }
+    &__day{
+        font-size: 25px;
+        line-height: 30px;
+        color: #000;
+        margin-bottom: 12px;
+    }
+    &__img{
+        margin-bottom: 12px;
+        svg{
+            width: 53px;
+            height: 53px;
+        }
+    }
+    &__close{
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+        &:hover{
+            transform: rotate(-90deg);
+        }
+    }
+    &__bottom{
+        font-size: 15px;
+        color: $base-color;
+    }
+}

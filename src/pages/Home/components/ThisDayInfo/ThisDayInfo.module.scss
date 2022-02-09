@@ -1,0 +1,56 @@
+@import '../../../../styles/variables.scss';
+
+.this__day_info{
+    position: relative;
+    padding: 40px;
+    max-width: 750px;
+    width: 100%;
+    background-color: var(#{--components-background-default});
+    box-shadow: var(#{--card-shadow-default});
+    border-radius: $border-radius;
+    img{
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 0;
+    }
+}
+
+.item{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    position: relative;
+    z-index: 2;
+    &:not(:last-child) {
+        margin-bottom: 25px;
+    }
+    .indicator, .indicator__name{
+        margin-right: 25px;
+    }
+
+    .indicator{
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        box-shadow: 1px 4px 10px -1px rgba(71, 147, 255, 0.2);
+        border-radius: 50%;
+        &__name{
+            color: $base-color;
+        }
+        &__value{
+            color: var(#{--text-color-default});
+        }
+        &__cloud{
+            position: absolute;
+            top: 0;
+            right: 0;
+            img{
+                background-repeat: no-repeat;
+            }
+        }
+    }
+}
