@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import Select from 'react-select';
 import { GlobalSvgSelector } from '../../assets/icons/global/GlobalSvgSelector';
+import { useTheme } from '../../hooks/useTheme';
 import { rootTheme, themeChange, TypeRootTheme, TypeTheme } from '../../types/types';
 import s from './Header.module.scss';
 
@@ -10,38 +11,23 @@ interface optionsSelect {
 }
 
 const Header: FC = () => {
+    const theme = useTheme();
+
     const options: optionsSelect[] = [
         { value: 'dedovsk', label: 'Дедовск' },
         { value: 'moscow', label: 'Москва' },
         { value: 'sochi', label: 'Сочи' },
     ];
 
-    const [theme, setTheme] = useState<TypeTheme>(themeChange.LIGHT);
-
     const changTheme = () => {
-        setTheme(theme === themeChange.LIGHT ? themeChange.DARK : themeChange.LIGHT);
+        theme.changeTheme(theme.theme === themeChange.LIGHT ? themeChange.DARK : themeChange.LIGHT);
     };
-
-    useEffect(() => {
-        const root = document.querySelector(':root') as HTMLElement;
-
-        const components: TypeRootTheme[] = [
-            rootTheme.BODY_BACKGROUND,
-            rootTheme.CARD_BACKGROUND,
-            rootTheme.CARD_SHADOW,
-            rootTheme.COMPONENTS_BACGROUND,
-            rootTheme.TEXT_COLOR,
-        ];
-
-        components.forEach((component) => {
-            root.style.setProperty(`--${component}-default`, `var(--${component}-${theme})`);
-        });
-    }, [theme]);
 
     const colorStyles = {
         control: (styles: any) => ({
             ...styles,
-            backgroundColor: theme === themeChange.DARK ? '#4F4F4F' : 'rgba(71, 147, 255, 0.2)',
+            backgroundColor:
+                theme.theme === themeChange.DARK ? '#4F4F4F' : 'rgba(71, 147, 255, 0.2)',
             width: '194px',
             height: '37px',
             border: 'none',
@@ -50,7 +36,7 @@ const Header: FC = () => {
         }),
         singleValue: (styles: any) => ({
             ...styles,
-            color: theme === themeChange.DARK ? '#fff' : '#000',
+            color: theme.theme === themeChange.DARK ? '#fff' : '#000',
         }),
     };
 

@@ -1,12 +1,12 @@
-import { createContext } from "vm";
-import { TypeTheme } from "../types/types";
+import { createContext } from "react";
+import { themeChange, TypeTheme } from "../types/types";
 
-interface Props {
+interface ThemeContextProps {
     theme: TypeTheme,
     changeTheme: (theme: TypeTheme) => void
 }
 
-export const ThemeContext = createContext({
-    theme: '',
-    changeTheme: () => {}
-})
+export const ThemeContext = createContext<ThemeContextProps>({
+    theme: themeChange.LIGHT,
+    changeTheme: () => {},
+});
